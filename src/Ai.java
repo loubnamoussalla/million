@@ -7,7 +7,7 @@ public class Ai {
     public Ai() {
     }
 
-    private static final String API_KEY = "AIzaSyCoDWCrGhcz1hDZYpGpZ05iGvOPKwEq5hw";
+    private static final String API_KEY = "";
 
     public String aiHelp(String question) {
         String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + API_KEY;
