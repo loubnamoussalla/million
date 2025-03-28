@@ -1,10 +1,19 @@
 import java.util.Scanner;
 
 public class Menue {
-   public static Scanner s = new Scanner(System.in);
+    User u;
+    QuestionBank q = new QuestionBank();
+    Scanner s = new Scanner(System.in);
 
-    public static void launchScreen(){
+    public Menue(User u) {
+        this.u = u;
+        this.q = q;
 
+    }
+
+
+    public void launchScreen(){
+        Game game = new Game(q, u);
         System.out.println("1- Start the game.");
         System.out.println("2- View the rules of the game.");
         System.out.println("3- Exit.");
@@ -17,7 +26,7 @@ public class Menue {
         }
         switch(user_choice){
             case 1:
-                //start game
+                game.play();
                 break;
             case 2:
                 //view rules
@@ -31,7 +40,7 @@ public class Menue {
                 launchScreen();
         }
     }
-    public static void viewRules()
+    public void viewRules()
     {
 
         System.out.println("If you select Easy difficulty option, you will be asked up to 9 questions on any topics at varying difficulties.");
