@@ -7,6 +7,11 @@ public class Questions {
         this.questiontxt = questiontxt;
         this.qOptions = qOptions;
         this.correctAnswer = correctAnswer;
+
+        // Validate that the correct answer corresponds to one of the options
+        if (getOptionIndex(correctAnswer) == -1) {
+            throw new IllegalArgumentException("Correct answer does not match any of the provided options.");
+        }
     }
 
     public String getQuestiontxt() {
@@ -18,9 +23,9 @@ public class Questions {
     }
 
     public String[] getqOptions() {
-
         return qOptions;
     }
+
     public void displayQuestion() {
         System.out.println("\n" + questiontxt);
         for (int i = 0; i < qOptions.length; i++) {
@@ -38,5 +43,18 @@ public class Questions {
 
     public void setCorrectAnswer(char correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    private int getOptionIndex(char answer) {
+        for (int i = 0; i < qOptions.length; i++) {
+            if (getOptionLetter(i) == answer) {
+                return i;
+            }
+        }
+        return -1; // Not found
+    }
+
+    public char getOptionLetter(int index) {
+        return (char) ('a' + index);
     }
 }
