@@ -12,16 +12,15 @@ public class QuestionBank {
 
 
     public QuestionBank() {
-        this.questions = questions;
         load_questions();
     }
-    public void load_questions()
-    {
+
+    public void load_questions() {
         BufferedReader reader;
         try {
 
             reader = new BufferedReader(new FileReader("./src/questions.txt"));
-            String line ;
+            String line;
 
             while ((line = reader.readLine()) != null) {
                 String questionTxt = line;
@@ -31,7 +30,7 @@ public class QuestionBank {
                 }
                 char correctAnswer = reader.readLine().charAt(0);
 
-                questions.add(new Questions(questionTxt,options,correctAnswer));
+                questions.add(new Questions(questionTxt, options, correctAnswer));
 
             }
 
@@ -41,9 +40,7 @@ public class QuestionBank {
         }
     }
 
-    public List<Questions> getQuestions() {
-        return questions;
-    }
+
     public Questions getRandomQuestion() {
         if (questions.isEmpty()) return null;
         return questions.remove(random.nextInt(questions.size()));

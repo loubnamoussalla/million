@@ -10,32 +10,32 @@ public class Lifeline {
 
     public String friendHelp(Questions question) {
         questionText = question.getQuestiontxt();
-        for (int i = 0; i < question.getqOptions().length ; i++) {
-            questionText +=  question.getqOptions()[i]+ " ";
+        for (int i = 0; i < question.getqOptions().length; i++) {
+            questionText += question.getqOptions()[i] + " ";
         }
 
 
         answer = ai.aiHelp("Yow will act like the friend a person calls during who wins the million game, provide one friend-like sentence including the answer " +
                 "select the correct answer: " + questionText);
-        return  "Your firend says: "+answer;
+        return "Your firend says: " + answer;
 
     }
 
     public String audiencHelp(Questions question) {
         questionText = question.getQuestiontxt();
-        for (int i = 0; i < question.getqOptions().length ; i++) {
-            questionText +=  question.getqOptions()[i]+ " ";
+        for (int i = 0; i < question.getqOptions().length; i++) {
+            questionText += question.getqOptions()[i] + " ";
         }
 
         answer = ai.aiHelp("Yow will act like the audience lifeline for a person during who want to be a millionare game, (do not provide long answers) dont provide any introductions" +
                 "provide percentages for each option : " + questionText);
-        return "The audience voted: \n"+ answer;
+        return "The audience voted: \n" + answer;
     }
-    public String[] eliminateAnswers(Questions question)
-    {
+
+    public String[] eliminateAnswers(Questions question) {
         char correctAnswer = question.getCorrectAnswer();
         String[] options = question.getqOptions();
-        List<Integer> wrongAnswers = new ArrayList<>();
+        List<Integer> wrongAnswers = new ArrayList<>(); // we created a list of the wring answers
         for (int i = 0; i < options.length; i++) {
             if (getOptionLetter(i) != correctAnswer) {
                 wrongAnswers.add(i);
@@ -49,8 +49,9 @@ public class Lifeline {
 
 
     }
+
     public char getOptionLetter(int index) {
-        return (char) ('a' + index);
+        return (char) ('a' + index); // if 0 then get a, 2 then get b ..
     }
 }
 

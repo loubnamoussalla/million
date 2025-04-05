@@ -1,6 +1,7 @@
 import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.IOException;
 
 public class Ai {
@@ -40,7 +41,7 @@ public class Ai {
                 JSONObject content = firstCandidate.getJSONObject("content");
                 JSONArray parts = content.getJSONArray("parts");
                 String text = parts.getJSONObject(0).getString("text");
-                 finalAnswer = text;
+                finalAnswer = text;
 
             } else {
                 System.err.println("Error: " + response.code() + " - " + response.message());
