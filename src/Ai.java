@@ -8,6 +8,7 @@ public class Ai {
     public Ai() {
     }
 
+    // Here we put the API Key we generated from Gemeni
     private static final String API_KEY = "";
 
     public String aiHelp(String question) {

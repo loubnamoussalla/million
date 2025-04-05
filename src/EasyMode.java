@@ -5,9 +5,9 @@ public class EasyMode extends Game {
     }
 
 
+    //Here w e override the Play() method, to define the max number of questions (devide them into 3 rounds)
     @Override
     public void play() {
-
 
         System.out.println(color.GREEN_TEXT + "\nWelcome, " + user.getName() + "! Let's begin the game." + color.RESET);
         System.out.println(color.GREEN_TEXT + "You selected Easy Mode." + color.RESET);

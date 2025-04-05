@@ -8,6 +8,8 @@ public class Lifeline {
     String answer;
     private Random random = new Random();
 
+
+        //we concate the question text and its options and pass them to Gemeni as a prompt
     public String friendHelp(Questions question) {
         questionText = question.getQuestiontxt();
         for (int i = 0; i < question.getqOptions().length; i++) {
@@ -20,7 +22,7 @@ public class Lifeline {
         return "Your firend says: " + answer;
 
     }
-
+    //we concate the question text and its options and pass them to Gemeni as a prompt
     public String audiencHelp(Questions question) {
         questionText = question.getQuestiontxt();
         for (int i = 0; i < question.getqOptions().length; i++) {
@@ -32,18 +34,20 @@ public class Lifeline {
         return "The audience voted: \n" + answer;
     }
 
+    //we get the correct answer's index, get the options, then we create list of indexes for the incorrect answers.
+    // then we eliminate two incorrect answers randomly
     public String[] eliminateAnswers(Questions question) {
         char correctAnswer = question.getCorrectAnswer();
         String[] options = question.getqOptions();
         List<Integer> wrongAnswers = new ArrayList<>(); // we created a list of the wring answers
         for (int i = 0; i < options.length; i++) {
-            if (getOptionLetter(i) != correctAnswer) {
+            if (getOptionLetter(i) != correctAnswer) { // if it is not a correct answer, add it to the wrongAnswers list
                 wrongAnswers.add(i);
             }
         }
         for (int i = 0; i < 2 && !wrongAnswers.isEmpty(); i++) {
             int indexToRemove = wrongAnswers.remove(random.nextInt(wrongAnswers.size()));
-            options[indexToRemove] = "❌";
+            options[indexToRemove] = "❌"; // replace them with X mark
         }
         return options;
 

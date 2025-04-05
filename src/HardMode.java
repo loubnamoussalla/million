@@ -3,6 +3,8 @@ public class HardMode extends Game {
         super(questionBank, user);
     }
 
+
+    //Here we override the Play() method, to define the max number of questions (devide them into 3 rounds)
     @Override
     public void play() {
 
@@ -45,6 +47,7 @@ public class HardMode extends Game {
         System.out.println(color.WHITE_BG + "Congratulations! You won $1,000,000!" + color.RESET);
     }
 
+    //We override the getPrizeMoney() method to add the apropriate prizes for each mode
     @Override
     public int getPrizeMoney(int questionNumber) {
         int[] hardPrizes = {100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000};

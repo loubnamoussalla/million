@@ -23,6 +23,8 @@ public abstract class Game {
     public abstract void play();
 
 
+        // In this method, we ask the question and number it
+
     public boolean askQuestion(int questionNumber) {
         Questions question = questionBank.getRandomQuestion(); //to get random questions from questionBank
         if (question == null) return false;
@@ -30,9 +32,11 @@ public abstract class Game {
         System.out.println("\nQuestion " + questionNumber + ":");
         question.displayQuestion();// to display the question in a propeer format
 
+        //get the user's answer
         char userChoice = getUserAnswer(question, questionNumber);
         userChoice = confirmAnswer(userChoice, questionNumber, question);
 
+        //check the answer if it is correct or not
         return checkAnswer(userChoice, question, questionNumber);
     }
 
@@ -59,7 +63,7 @@ public abstract class Game {
         }
     }
 
-    //confir thisis the final user's answer
+    //confirm this is the final user's answer
     private char confirmAnswer(char userChoice, int questionNumber, Questions question) {
         int confirm;
         do {
@@ -85,6 +89,7 @@ public abstract class Game {
     }
 
 
+    //if the user didnt confirm the answer, here we get their second one
     private char getReenteredAnswer(Questions question, int questionNumber) {
         char[] validAnswers = {'a', 'b', 'c', 'd'};
 
@@ -101,7 +106,7 @@ public abstract class Game {
         }
     }
 
-
+    //Here we check the answer if it is correct or not (after checking if the answer is valid
     private boolean checkAnswer(char userChoice, Questions question, int questionNumber) {
         if (userChoice == question.correctAnswer) {
             prizeMoney = getPrizeMoney(questionNumber);
@@ -113,6 +118,7 @@ public abstract class Game {
         }
     }
 
+    //we check if the user is in hard mode and round 1
     private boolean isEligibleForLifeline(int questionNumber) {
         return !(this instanceof HardMode && questionNumber <= 5);
     }
@@ -121,6 +127,7 @@ public abstract class Game {
     public abstract int getPrizeMoney(int questionNumber);
 
 
+    //Here we have boolean array of size 3, we check how namy did the user consume and provide what remains
     public void useLifeline(Questions question) {
         if (lifelinesUsed[0] && lifelinesUsed[1] && lifelinesUsed[2]) //to check if the user consumed all the lifelines
             System.out.println(color.RED_TEXT + "No available lifelines" + color.RESET);
@@ -135,16 +142,18 @@ public abstract class Game {
                 case 1:
                     lifelinesUsed[0] = true;
                     System.out.println("50/50 Eliminates two wrong answers.");
-                    for (String s : lifeline.eliminateAnswers(question))
+                    for (String s : lifeline.eliminateAnswers(question)) //we get the updated options
                         System.out.println(s.toString());
                     break;
                 case 2:
                     lifelinesUsed[1] = true;
+                    // we get Gemeni's help as Audience's percentage
                     System.out.println(color.YELLOW_TEXT + lifeline.audiencHelp(question) + color.RESET);
                     ;
                     break;
                 case 3:
                     lifelinesUsed[2] = true;
+                    // we get Gemeni's help as friend
                     System.out.println(color.YELLOW_TEXT + lifeline.friendHelp(question) + color.RESET);
                     ;
                     break;

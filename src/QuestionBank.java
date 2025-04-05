@@ -12,9 +12,11 @@ public class QuestionBank {
 
 
     public QuestionBank() {
+        //we load the questions in the constructor
         load_questions();
     }
 
+    //Read from questions text by bufferreader to reduce I/O operations
     public void load_questions() {
         BufferedReader reader;
         try {
@@ -41,6 +43,8 @@ public class QuestionBank {
     }
 
 
+    //Here we get random question out of the questions in the questions list,
+    // then we remove it from the list to make sure it wont be repeaated again
     public Questions getRandomQuestion() {
         if (questions.isEmpty()) return null;
         return questions.remove(random.nextInt(questions.size()));
